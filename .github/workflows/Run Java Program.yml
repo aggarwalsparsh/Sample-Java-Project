@@ -52,6 +52,6 @@ jobs:
        - name: Checkout repository
          uses: actions/checkout@v3
          
-        - name: Run Java Program
-          if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && github.actor == 'aggarwalsparsh' && env.JAVA_VERSION == '17'
-          run: java -cp src HelloWorld
+       - name: Run Java Program
+         if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && github.actor == 'aggarwalsparsh' && env.JAVA_VERSION == '17'
+         run: java -cp src HelloWorld
