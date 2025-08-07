@@ -7,11 +7,12 @@ jobs:
   matrix-jobs:
     runs-on: ${{matrix.os}}
     strategy:
+      fail-fast: false
       matrix:
         os:
         - ubuntu-latest
         - windows-latest
-        java-version: [21,17]
+        java-version: [21,17,20]
     steps:
       - name: Setup Java JDK
         uses: actions/setup-java@v3.14.1
