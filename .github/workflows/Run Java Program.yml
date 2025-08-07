@@ -36,4 +36,5 @@ jobs:
         run: javac src/HelloWorld.java
 
       - name: Run Java Program
+        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/head/main' && github.actor == 'aggarwalSparsh'
         run: java -cp src HelloWorld
