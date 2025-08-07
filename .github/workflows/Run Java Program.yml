@@ -56,10 +56,8 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
 
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - run: echo '${{needs.compile-java.outputs.compile_message }}'
+      - name: Displaying message
+        run: echo '${{needs.compile-java.outputs.compile_message }}'
          
        - name: Run Java Program
          if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && github.actor == 'aggarwalsparsh' && env.JAVA_VERSION == '17'
