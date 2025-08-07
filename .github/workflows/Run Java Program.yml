@@ -56,5 +56,4 @@ jobs:
          
        - name: Run Java Program
          if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && github.actor == 'aggarwalsparsh' && env.JAVA_VERSION == '17'
-         run: |
-          java -cp bin HelloWorld
+         run: java -cp bin HelloWorld
