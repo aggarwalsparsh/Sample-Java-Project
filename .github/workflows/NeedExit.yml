@@ -1,0 +1,25 @@
+name:  Need Exit
+
+
+on: 
+   workflow_dispatch
+
+jobs:
+   build:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Print Build
+          run: exit 1
+        
+   test:
+      needs: build
+      runs-on: windows-latest
+      steps:
+        - name: Print test - chrome
+          run: echo 'Print test'
+   deploy:
+      needs: [build, test]
+      runs-on: ubuntu-latest
+      steps:
+        - name: Print deploy
+          run: echo 'Print deploy'
