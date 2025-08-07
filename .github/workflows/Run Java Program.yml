@@ -42,7 +42,9 @@ jobs:
 
        - name: Compile Java Code
          if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && github.actor == 'aggarwalsparsh' && env.JAVA_VERSION == '17'
-         run: javac src/HelloWorld.java
+         run: |      
+          mkdir -p bin
+          javac -d bin src/HelloWorld.java
 
   run-java:
     needs: [setup-java, compile-java]
@@ -54,4 +56,5 @@ jobs:
          
        - name: Run Java Program
          if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && github.actor == 'aggarwalsparsh' && env.JAVA_VERSION == '17'
-         run: java -cp src HelloWorld
+         run: |
+          java -cp bin HelloWorld
