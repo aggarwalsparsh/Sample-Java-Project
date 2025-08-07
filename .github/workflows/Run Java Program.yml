@@ -19,10 +19,20 @@ jobs:
         run: java -version
       
       - name: Print Repo Name
-        run: echo 'Repo Name ${{github.repository}}'
-        
-      
+        run: | 
+          echo 'Repo Name ${{github.repository}}'
+          echo 'Repo Id ${{github.repository_id}}'
+          echo 'Repo url ${{github.repositoryUrl}}'
+          echo 'Repo token ${{github.token}}'
+          echo 'Workflow Name ${{github.workflow}}'
+          echo 'Actor ${{github.actor}}'
+          echo 'Ref Details ${{github.ref}}'
+          echo 'Trigger event ${{github.event_name}}'
+          echo 'Run id${{github.run_id}}'
+          echo 'Run number ${{github.run_number}}'
+
       - name: Compile Java Code
+        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/head/main' && github.actor == 'aggarwalSparsh'
         run: javac src/HelloWorld.java
 
       - name: Run Java Program
