@@ -10,7 +10,7 @@ jobs:
       message: ${{steps.set-message.outputs.greetings}}
     steps:
       - id: set-message
-        run: echo 'greeting=Hello Github'>> $GITHUB_OUTPUT
+        run: echo 'greetings=Hello Github'>> $GITHUB_OUTPUT
   display_msg:
     needs: gen-msg
     runs-on: ubuntu-latest
