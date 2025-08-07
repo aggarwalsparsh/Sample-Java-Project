@@ -22,6 +22,9 @@ jobs:
   compile-java:   
      needs: setup-java
      runs-on: ubuntu-latest
+     outputs:
+      compile_message: ${{ steps.set_output.outputs.message}}
+
      steps:
        - name: Checkout repository
          uses: actions/checkout@v3
@@ -44,6 +47,10 @@ jobs:
          if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && github.actor == 'aggarwalsparsh' && env.JAVA_VERSION == '17'
          run: javac src/HelloWorld.java
 
+       - name: Set output message
+         id: set_output
+         run: echo "message=Java compilation successful" >> $GITHUB_OUTPUT
+         
        - name: Run Java Program
          if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && github.actor == 'aggarwalsparsh' && env.JAVA_VERSION == '17'
          run: java -cp src HelloWorld
