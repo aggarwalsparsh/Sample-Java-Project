@@ -18,6 +18,10 @@ jobs:
       - name: Print Java version
         run: java -version
       
+      - name: Print Repo Name
+        run: echo 'Repo Name ${{github.repository}}'
+        
+      
       - name: Compile Java Code
         run: javac src/HelloWorld.java
 
