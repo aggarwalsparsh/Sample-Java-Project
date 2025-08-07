@@ -1,7 +1,8 @@
 name: Run Java Program
 
 on: workflow_dispatch
-
+env:
+  JAVA_VERSION: '17'
 jobs:
   run-java:
     runs-on: ubuntu-latest
@@ -32,9 +33,9 @@ jobs:
           echo 'Run number ${{github.run_number}}'
 
       - name: Compile Java Code
-        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && github.actor == 'aggarwalsparsh'
+        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && github.actor == 'aggarwalsparsh' && env.JAVA_VERSION == '17'
         run: javac src/HelloWorld.java
 
       - name: Run Java Program
-        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && github.actor == 'aggarwalsparsh'
+        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && github.actor == 'aggarwalsparsh' && env.JAVA_VERSION == '17'
         run: java -cp src HelloWorld
