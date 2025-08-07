@@ -23,7 +23,7 @@ jobs:
      needs: setup-java
      runs-on: ubuntu-latest
      outputs:
-      compile_message: ${{ steps.set_output.outputs.message}}
+      compile_message: ${{steps.set_output.outputs.message}}
 
      steps:
        - name: Checkout repository
