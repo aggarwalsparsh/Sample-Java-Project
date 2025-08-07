@@ -32,9 +32,9 @@ jobs:
           echo 'Run number ${{github.run_number}}'
 
       - name: Compile Java Code
-        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/head/main' && github.actor == 'aggarwalSparsh'
+        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && github.actor == 'aggarwalsparsh'
         run: javac src/HelloWorld.java
 
       - name: Run Java Program
-        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/head/main' && github.actor == 'aggarwalSparsh'
+        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && github.actor == 'aggarwalsparsh'
         run: java -cp src HelloWorld
