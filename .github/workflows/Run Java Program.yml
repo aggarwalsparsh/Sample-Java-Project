@@ -55,6 +55,10 @@ jobs:
     needs: compile-java
     runs-on: ubuntu-latest
     steps: 
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - run: echo '${{needs.compile-java.outputs.compile_message }}'
          
        - name: Run Java Program
