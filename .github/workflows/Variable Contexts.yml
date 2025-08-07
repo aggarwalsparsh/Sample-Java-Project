@@ -1,0 +1,19 @@
+name: Variable Context
+
+on: 
+  workflow_dispatch
+
+env:
+  JAVA_VERSION: 21
+
+jobs:
+ Variables:
+    env:
+      JAVA_VERSION: 20
+    runs-on: ubuntu-latest
+    steps:
+    - name: Print Variable Name
+      run: echo '${{env.JAVA_VERSION}}'
+      env:
+        JAVA_VERSION: 17
+     
