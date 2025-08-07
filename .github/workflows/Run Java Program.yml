@@ -1,0 +1,21 @@
+name: Run Java Program
+
+on: workflow_dispatch
+
+jobs:
+  run-java:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Java JDK
+        uses: actions/setup-java@v3.14.1
+        with:
+          java-version: '17'
+          distribution: microsoft
+      - name: Print Java version
+        run: java -version
+      
+      - name: Compile Java Code
+        run: javac src/HelloWorld.java
+
+      - name: Run Java Program
+        run: java -cp src HelloWorld
