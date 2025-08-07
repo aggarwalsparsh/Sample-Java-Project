@@ -23,7 +23,7 @@ jobs:
      needs: setup-java
      runs-on: ubuntu-latest
      outputs:
-      compile_message: ${{steps.set_output.outputs.message}}
+      compile_message: ${{steps.set_output.outputs.message }}
 
      steps:
        - name: Checkout repository
@@ -55,7 +55,7 @@ jobs:
     needs: compile-java
     runs-on: ubuntu-latest
     steps: 
-      - run: echo '${{needs.compile-java.outputs.compile_message}}'
+      - run: echo '${{needs.compile-java.outputs.compile_message }}'
          
        - name: Run Java Program
          if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && github.actor == 'aggarwalsparsh' && env.JAVA_VERSION == '17'
