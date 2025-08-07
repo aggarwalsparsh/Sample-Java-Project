@@ -4,7 +4,7 @@ on: workflow_dispatch
 env:
   JAVA_VERSION: '17'
 jobs:
-  run-java:
+  setup-java:
     runs-on: ubuntu-latest
     steps:
     
@@ -18,9 +18,13 @@ jobs:
           distribution: microsoft
       - name: Print Java version
         run: java -version
-      
-      - name: Print Repo Name
-        run: | 
+
+  compile-java:   
+     needs: setup-java
+     runs-on: ubuntu-latest
+     steps:
+       - name: Print Repo Name
+         run: | 
           echo 'Repo Name ${{github.repository}}'
           echo 'Repo Id ${{github.repository_id}}'
           echo 'Repo url ${{github.repositoryUrl}}'
@@ -33,10 +37,14 @@ jobs:
           echo 'Run number ${{github.run_number}}'
           echo 'env variable ${{env.JAVA_VERSION}}'
 
-      - name: Compile Java Code
-        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && github.actor == 'aggarwalsparsh' && env.JAVA_VERSION == '17'
-        run: javac src/HelloWorld.java
+       - name: Compile Java Code
+         if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && github.actor == 'aggarwalsparsh' && env.JAVA_VERSION == '17'
+         run: javac src/HelloWorld.java
 
-      - name: Run Java Program
-        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && github.actor == 'aggarwalsparsh' && env.JAVA_VERSION == '17'
-        run: java -cp src HelloWorld
+  run-java:
+    needs: [setup-java, compile-java]
+    runs-on: ubuntu-latest
+    steps: 
+        - name: Run Java Program
+          if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && github.actor == 'aggarwalsparsh' && env.JAVA_VERSION == '17'
+          run: java -cp src HelloWorld
