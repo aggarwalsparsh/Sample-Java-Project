@@ -13,7 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Print Variable Name
-      run: echo '${{env.JAVA_VERSION}}'
+      run: |
+        echo '${{env.JAVA_VERSION}}'
+        echo '${{vars.JAVA_VERSION}}'
       env:
         JAVA_VERSION: 17
      
