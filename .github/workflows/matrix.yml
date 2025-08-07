@@ -6,16 +6,16 @@ on:
 jobs:
   matrix-jobs:
     runs-on: ${{matrix.os}}
-      strategy:
-        matrix:
-          os:
-            -ubuntu-latest
-            -windows-latest
-            -mac-latest
-          java-version: [8,17]
+    strategy:
+      matrix:
+        os:
+        - ubuntu-latest
+        - windows-latest
+        - mac-latest
+        java-version: [8,17]
     steps:
-       - name: Setup Java JDK
+      - name: Setup Java JDK
         uses: actions/setup-java@v3.14.1
         with:
           java-version: ${{matrix.java-version}}
-    
+          distribution: microsoft
