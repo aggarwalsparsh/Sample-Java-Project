@@ -14,7 +14,7 @@ jobs:
       - name: Setup Java JDK
         uses: actions/setup-java@v3.14.1
         with:
-          java-version: '17'
+          java-version: ${{env.JAVA_VERSION}}
           distribution: microsoft
       - name: Print Java version
         run: java -version
@@ -23,6 +23,9 @@ jobs:
      needs: setup-java
      runs-on: ubuntu-latest
      steps:
+       - name: Checkout repository
+         uses: actions/checkout@v3
+
        - name: Print Repo Name
          run: | 
           echo 'Repo Name ${{github.repository}}'
@@ -45,6 +48,10 @@ jobs:
     needs: [setup-java, compile-java]
     runs-on: ubuntu-latest
     steps: 
+    
+       - name: Checkout repository
+         uses: actions/checkout@v3
+         
         - name: Run Java Program
           if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && github.actor == 'aggarwalsparsh' && env.JAVA_VERSION == '17'
           run: java -cp src HelloWorld
